@@ -15,6 +15,7 @@ input {
 .button {
     padding: 5px 10px 5px 10px;
     border: 1px solid darkgray;
+    border-radius: 15px;
     width: 182px;
     margin-top: 6px;
     text-shadow: 4px 4px 1px darkgray;
@@ -60,7 +61,7 @@ h1, h2 {
 }
 
 .todoInput {
-    background-color: palegoldenrod;
+    background-color: #EDC4AA;
 }
 
 .addTodo {
