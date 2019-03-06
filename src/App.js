@@ -3,6 +3,7 @@ import TodoForm from './components/TodoComponents/TodoForm'
 import TodoList from './components/TodoComponents/TodoList'
 import './components/TodoComponents/Todo.css'
 
+
 localStorage.getItem('state')
 
 class App extends React.Component {
@@ -31,7 +32,7 @@ class App extends React.Component {
     event.preventDefault()
     let tempStr = this.state.Todo
     tempStr = tempStr.replace(/\s+/g, '')
-    if (tempStr !== 0){
+    if (tempStr != 0){
       const tempTodos = this.state.Todos.slice()
       tempTodos.push({ task: this.state.Todo, id: Date.now(), completed: false, })
       this.setState({Todos: tempTodos, Todo: ' '})
@@ -60,11 +61,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>todo list</h1>
-        <TodoList todos={this.state.Todos} toggleStrike={this.strikeThrough} />
-        <TodoForm changeInput={this.newTodo} addTodo={this.addTask} clearCompleted={this.clearCompleted} vOS={this.state.Todo}/>
+      <div className='container'>
+        <div>
+          <h1>todo list</h1>
+          <h2>sci-fi watchlist edition</h2>
+          <TodoList todos={this.state.Todos} toggleStrike={this.strikeThrough} />
+          <TodoForm changeInput={this.newTodo} addTodo={this.addTask} clearCompleted={this.clearCompleted} vOS={this.state.Todo}/>
+        </div>
+        <div className='imageHolder'>
+          <img src={require("./USS_Discovery.jpg")} />
+        </div>
       </div>
+
     );
   }
 }

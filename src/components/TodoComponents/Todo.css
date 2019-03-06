@@ -22,10 +22,10 @@ input {
 }
 
 body {
-    font-family: Helvetica;
+    font-family: 'Orbitron', sans-serif;
     width: 80%;
     margin: auto;
-    background-color: blanchedalmond;
+    background-color: #06050A;
     
     }
 
@@ -37,12 +37,13 @@ body {
     text-decoration: none;
 }
 
-h1 {
-    text-shadow: 4px 4px 5px skyblue;
+h1, h2 {
+    color: white;
+    text-shadow: 4px 4px 5px #0A4EB4;
 }
 
 .singleTodo {
-    box-shadow: 5px 5px 5px skyblue;
+    box-shadow: 5px 5px 5px #0A4EB4;
     border: 1px solid darkgray;
     margin: 10px;
     margin-left: 0px;
@@ -68,4 +69,14 @@ h1 {
 
 .clearCompleted {
     text-shadow: 2px 2px 2px red;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-items: left;
+}
+
+img {
+    max-width: 90%;
 }
