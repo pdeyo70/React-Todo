@@ -23,40 +23,40 @@ class App extends React.Component {
           completed: false},
         ],
         Todo: '',
-      }
+      }  //state is short list of static todo tasks in Todos; Todo is set to an empty string by default--our input will change its value when we setState
   }
 
-  newTodo = (event) => this.setState({Todo: event.target.value})
+  newTodo = (event) => this.setState({Todo: event.target.value}) //newTodo is a function to set the state of Todo to the entered value when called
 
-  addTask = (event) => {
-    event.preventDefault()
-    let tempStr = this.state.Todo
-    tempStr = tempStr.replace(/\s+/g, '')
-    if (tempStr != 0){
-      const tempTodos = this.state.Todos.slice()
-      tempTodos.push({ task: this.state.Todo, id: Date.now(), completed: false, })
-      this.setState({Todos: tempTodos, Todo: ' '})
+  addTask = (event) => {  //function to add a task to the Todos list
+    event.preventDefault()  //prevents addTask from refreshing browser when called
+    let tempStr = this.state.Todo  //declares tempStr variable, set it to hold value of this state's Todo
+    tempStr = tempStr.replace(/\s+/g, '') //sets tempStr to equal tempStr with spaces replaced by empty strings; if there's nothing but spaces, the length of tempStr is 0, which comes in handy...
+    if (tempStr.length != 0){ //...here, where if no visible characters are entered in the input string, the task isn't added
+      const tempTodos = this.state.Todos.slice()  //slices Todos array so we can manipulate data in the slice
+      tempTodos.push({ task: this.state.Todo, id: Date.now(), completed: false, })  //pushes this state's todo to the end of the slice
+      this.setState({Todos: tempTodos, Todo: ' '})  //sets state's Todos to now hold the updates tempTodos; resets Todo to an empty string
     }
   }
 
-  strikeThrough = (id) => {
-    let todos = this.state.Todos.slice()
-    todos = todos.map( todo => {
-      if (todo.id === id){
-        todo.completed = !todo.completed
-        return todo
-      } else {
-        return todo
+  strikeThrough = (id) => {  //strikeThrough function, called by toggleStrike prop in TodoList component, takes id from the props of the Todo that calls it
+    let todos = this.state.Todos.slice() //variable todos is set to a slice of Todos from state, again to keep from interacting directly with the state
+    todos = todos.map( todo => { //todos is set to contain a mapping of itself, passing argument todo
+      if (todo.id === id){  //if this todo id is identical to the id passed to strikeThrough
+        todo.completed = !todo.completed //the todo completed status is toggled to its opposite
+        return todo  //returns todo as modified
+      } else {  //otherwise
+        return todo  //function returns todo unchanged
       }
     }
     )
-    this.setState({ todos })
+    this.setState({ todos })  //modified todos is set to state
   }
 
-  clearCompleted = (event) => {
-    let Todos = this.state.Todos.slice()
-    Todos = Todos.filter (Todo => !Todo.completed)
-    this.setState({ Todos })
+  clearCompleted = (event) => {  //clearCompleted function
+    let Todos = this.state.Todos.slice()  //again, slicing to protect state, into variable Todos
+    Todos = Todos.filter (Todo => !Todo.completed)  //Todos is set to a subset of itself, filtering completed todos
+    this.setState({ Todos })  //state is set to our modified Todos array
   }
 
   render() {
